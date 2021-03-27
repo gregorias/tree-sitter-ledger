@@ -1,5 +1,20 @@
 [
   {
+    "type": "",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "account_name_part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "account",
     "named": true,
     "fields": {}
@@ -585,6 +600,10 @@
   {
     "type": "account",
     "named": false
+  },
+  {
+    "type": "account_name_part",
+    "named": true
   },
   {
     "type": "alias",

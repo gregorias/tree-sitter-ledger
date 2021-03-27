@@ -7,6 +7,7 @@ module.exports = grammar({
         $.indented_line,
         $.spacer,
         $.whitespace,
+        $.account_name_part,
     ],
 
     rules: {
@@ -243,7 +244,15 @@ module.exports = grammar({
             seq('[', $.account_name, ']'),
         ), ''),
 
-        account_name: $ => /(\p{L} \p{L}|\p{L}:?)+/,
+        account_name: $ => seq(
+            $.account_name_part,
+            repeat(seq(
+                /:/,
+                $.account_name_part,
+            )),
+        ),
+
+        account_name_part: $ => /(\p{L}|\p{N})([^:]*\p{L}|\p{N})?/,
 
         amount: $ => choice(
             seq(

@@ -1239,8 +1239,33 @@
       "value": ""
     },
     "account_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "account_name_part"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": ":"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "account_name_part"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "account_name_part": {
       "type": "PATTERN",
-      "value": "(\\p{L} \\p{L}|\\p{L}:?)+"
+      "value": "(\\p{L}|\\p{N})([^:]*\\p{L}|\\p{N})?"
     },
     "amount": {
       "type": "CHOICE",
@@ -1436,7 +1461,8 @@
   "inline": [
     "indented_line",
     "spacer",
-    "whitespace"
+    "whitespace",
+    "account_name_part"
   ],
   "supertypes": []
 }
