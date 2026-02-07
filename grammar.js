@@ -311,7 +311,7 @@ module.exports = grammar({
 
         code: $ => seq('(', /[^)]*/, ')'),
 
-        payee: $ => /[^(*!\S;][^\n;]*/,
+        payee: $ => /[^(*!\s;][^\n;]*/,
 
         query: $ => /[^\n]+/,
 
@@ -347,7 +347,7 @@ module.exports = grammar({
         amount: $ => {
             const quantity = seq(optional('+'), $.quantity);
             const negative_quantity = seq('-', $.negative_quantity);
-            
+
             return choice(
                 prec.right(1, seq(
                     choice(quantity, negative_quantity),
@@ -376,7 +376,7 @@ module.exports = grammar({
           seq( '{', optional($.whitespace), $.amount, optional($.whitespace), '}'),
           seq('{{', optional($.whitespace), $.amount, optional($.whitespace), '}}'),
         ),
-        
+
         price: $ => seq(
             choice('@', '@@'),
             optional($.whitespace),
